@@ -1,0 +1,52 @@
+<div class="box-todo">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-10">
+        <input
+          class="form-control mb-4"
+          [(ngModel)]="newToDo.title"
+          placeholder="new task"
+          (click)="(createToDo)"
+        />
+      </div>
+
+      <div class="col-sm-10">
+        <button class="btn btn-primary">new task</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <table class="table table-striped table-dark">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Edit</th>
+              <th>Remove</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(i of todos; track i.id){
+            <tr>
+              <td
+                [ngClass]="{ 'text-decoration-line-through': i.completed }"
+                [routerLink]="['/todos', i.id]"
+              >
+                <input type="checkbox" [(ngModel)]="i.completed" value="" />
+                Item{{ i.title }}
+              </td>
+              <td>
+                <button class="btn btn-danger">Edit</button>
+              </td>
+              <td>
+                <button class="btn btn-danger" (click)="deleteTodo(i.id)">
+                  Remove
+                </button>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

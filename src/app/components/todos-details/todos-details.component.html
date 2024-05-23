@@ -1,0 +1,57 @@
+@if(toDo){
+<p>todos-details works!</p>
+<div>title : {{ toDo.title }}</div>
+<div>completed : {{ toDo.completed ? "true" : "false" }}</div>
+<div class="container px-5 my-5">
+  <div class="borderclass">
+    <p>todos-details works!</p>
+    <div>title : {{ toDo.title }}</div>
+    <div>completed : {{ toDo.completed }}</div>
+    <div class="container px-5 my-5">
+      <div class="borderclass">
+        <form id="contactFrom" (ngSubmit)="updatetoDo()" #form="ngForm">
+          <div class="mb-3 d-flex">
+            <label class="form-label w-25 fw-bold" for="title">
+              task title :
+            </label>
+            <input
+              class="w-75"
+              type="text"
+              placeholder="todo title"
+              id="title"
+              required
+              pattern="[A-Z-a-z]{3,}"
+              #input1="ngModel"
+              [(ngModel)]="toDo.id"
+              [ngClass]="{
+                'is-invalid': (input1.touched || input1.dirty) && input1.invalid
+              }"
+            />
+          </div>
+          <div class="mb-3 d-flex">
+            <label class="form-label fw-bold" for="completed">Completed</label>
+            <input
+              type="checkbox"
+              id="completed"
+              name="completed"
+              class="from-check w-50"
+              [(ngModel)]="toDo.completed"
+            />
+          </div>
+          <div class="d-grid">
+            <button
+              class="d-grid"
+              type="submit"
+              id="submiteButton"
+              [disabled]="form.invalid"
+            >
+              Update
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+}
